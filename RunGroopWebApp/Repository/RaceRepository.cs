@@ -45,7 +45,8 @@ namespace RunGroopWebApp.Repository
 
         public async Task<Race> GetByIdAsyncNoTracking(int id)
         {
-            return await _context.Races.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+            //return await _context.Races.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+            return await _context.Races.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync();
         }
 
         public bool Save()
