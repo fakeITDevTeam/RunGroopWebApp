@@ -15,8 +15,8 @@ namespace RunGroopWebApp.Models
 
         //public string? State { get; set; }
 
-        //[ForeignKey("Address")]
-        //public int? AdddressId { get; set; }
+        [ForeignKey("Address")]
+        public int? AddressId { get; set; }
 
         public Address? Address { get; set; }
 
