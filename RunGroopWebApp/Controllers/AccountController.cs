@@ -83,8 +83,15 @@ namespace RunGroopWebApp.Controllers
 
             var newUserResponse = await _userManager.CreateAsync(newUser, registerViewModel.Password);
 
-            if (newUserResponse.Succeeded)            
+            if (newUserResponse.Succeeded)
+            {
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+            }
+            else
+            {
+                TempData["Error"] = "The password must contains uppercase, alphanumeric, and special characters";
+                return View(registerViewModel);
+            }
 
             return RedirectToAction("Index", "Home");
         }
@@ -93,7 +100,7 @@ namespace RunGroopWebApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Race");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
